@@ -11,6 +11,20 @@ enum Hooks {
         return text.contains("hooks/notify.sh")
     }
 
+    /// Install the hooks on first launch, and refresh notify.sh after an app update.
+    /// If the user later removes the hooks, they stay removed until reinstalled from the menu.
+    static func syncOnLaunch() {
+        let defaults = UserDefaults.standard
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+        let firstLaunch = defaults.string(forKey: "hooksSyncedVersion") == nil
+        guard firstLaunch ? !isInstalled : (isInstalled && defaults.string(forKey: "hooksSyncedVersion") != version)
+        else { defaults.set(version, forKey: "hooksSyncedVersion"); return }
+        Task {
+            _ = await run()
+            defaults.set(version, forKey: "hooksSyncedVersion")
+        }
+    }
+
     /// Returns the script's output (or an error message).
     static func run(uninstall: Bool = false) async -> String {
         guard let script = Bundle.main.url(forResource: "install-hooks", withExtension: "sh") else {

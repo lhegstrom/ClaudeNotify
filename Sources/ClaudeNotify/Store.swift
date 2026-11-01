@@ -96,6 +96,7 @@ final class Store {
     init() {
         reload(force: true)
         Notifier.shared.start()
+        Hooks.syncOnLaunch()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated {
                 self?.reload(force: false)

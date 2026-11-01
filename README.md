@@ -28,10 +28,11 @@ Installs the app to `~/Applications`, sets up the Claude Code hooks, and launche
 
 ```bash
 brew tap lhegstrom/claudenotify https://github.com/lhegstrom/ClaudeNotify
-brew install --cask claudenotify
+brew install --cask lhegstrom/claudenotify/claudenotify
+open /Applications/ClaudeNotify.app
 ```
 
-Upgrade later with `brew upgrade --cask claudenotify`.
+Using the full `lhegstrom/claudenotify/claudenotify` name tells Homebrew (6.0+) to trust just this cask from the tap. The app sets up the Claude Code hooks the first time it opens. Upgrade later with `brew upgrade --cask claudenotify`.
 
 ### Option 3 — manual download
 
@@ -42,7 +43,7 @@ Because the app isn't notarized by Apple (that requires a paid developer account
 - open **System Settings → Privacy & Security**, scroll down, and click **Open Anyway**, or
 - run `xattr -dr com.apple.quarantine /Applications/ClaudeNotify.app`
 
-Then click **Install** in the app's panel to set up the Claude Code hooks.
+On first launch the app sets up the Claude Code hooks (or click **Install** in its panel if you see a warning).
 
 ### Option 4 — build from source
 
