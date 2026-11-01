@@ -16,15 +16,7 @@ Requires **macOS 15 (Sequoia) or later**.
 
 ## Install
 
-### Option 1 — one-line installer (recommended)
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/lhegstrom/ClaudeNotify/main/install.sh | bash
-```
-
-Installs the app to `~/Applications`, sets up the Claude Code hooks, and launches it.
-
-### Option 2 — Homebrew
+### Option 1 — Homebrew (recommended)
 
 ```bash
 brew install --cask lhegstrom/tap/claudenotify
@@ -32,6 +24,14 @@ open /Applications/ClaudeNotify.app
 ```
 
 This taps [lhegstrom/homebrew-tap](https://github.com/lhegstrom/homebrew-tap) and trusts just this cask (Homebrew 6.0+ requires trust for non-official taps). The app sets up the Claude Code hooks the first time it opens. After that, `brew upgrade claudenotify` and `brew uninstall claudenotify` work by the short name.
+
+### Option 2 — one-line installer
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/lhegstrom/ClaudeNotify/main/install.sh | bash
+```
+
+No Homebrew needed. Installs the app to `~/Applications`, sets up the Claude Code hooks, and launches it.
 
 ### Option 3 — manual download
 
