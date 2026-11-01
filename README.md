@@ -27,12 +27,11 @@ Installs the app to `~/Applications`, sets up the Claude Code hooks, and launche
 ### Option 2 — Homebrew
 
 ```bash
-brew tap lhegstrom/claudenotify https://github.com/lhegstrom/ClaudeNotify
-brew install --cask lhegstrom/claudenotify/claudenotify
+brew install --cask lhegstrom/tap/claudenotify
 open /Applications/ClaudeNotify.app
 ```
 
-Using the full `lhegstrom/claudenotify/claudenotify` name tells Homebrew (6.0+) to trust just this cask from the tap. The app sets up the Claude Code hooks the first time it opens. Upgrade later with `brew upgrade --cask claudenotify`.
+This taps [lhegstrom/homebrew-tap](https://github.com/lhegstrom/homebrew-tap) and trusts just this cask (Homebrew 6.0+ requires trust for non-official taps). The app sets up the Claude Code hooks the first time it opens. After that, `brew upgrade claudenotify` and `brew uninstall claudenotify` work by the short name.
 
 ### Option 3 — manual download
 
@@ -79,11 +78,11 @@ Install the ntfy app ([iOS](https://apps.apple.com/app/ntfy/id1625396347) / [And
 ## Releasing (maintainers)
 
 ```bash
-scripts/release.sh 1.1.0     # bumps VERSION, builds dist/ClaudeNotify.zip, updates the cask's sha256
-# then follow the printed commit / tag / `gh release create` commands
+scripts/release.sh 1.1.0     # bumps VERSION, builds dist/ClaudeNotify.zip, updates the cask in ../homebrew-tap
+# then follow the printed commit / tag / `gh release create` / tap push commands
 ```
 
-The release asset must be named `ClaudeNotify.zip` — the installer and cask both depend on it.
+Expects a checkout of [lhegstrom/homebrew-tap](https://github.com/lhegstrom/homebrew-tap) next to this repo (or set `TAP_DIR`). The release asset must be named `ClaudeNotify.zip` — the installer and cask both depend on it.
 
 ## License
 
